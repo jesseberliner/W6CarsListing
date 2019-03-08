@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="base :: header"></div>
+    <title></title>
+</head>
+<body class="d-flex flex-column">
+<div th:replace="base :: nav"></div>
+<div class="container">
+    <div id="page-content">
+        <div class="row justify-content-md-center">
+            <form action="#" th:action="@{/add}" th:object="${car}" method="post" enctype="multipart/form-data">
+                <input type="hidden" th:field="*{id}"/>
+                <h2>All fields are required</h2>
+                <div class="form-group">
+                    <label for="manufacturer">Manufacturer : </label>
+                    <input type="text" th:field="*{manufacturer}" id="manufacturer" placeholder="Mini" />
+                    <span th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}"></span><br />
+                </div>
+                <br/>
+
+                <div class="form-group">
+                    <label for="model">Model : </label>
+                    <input type="text" th:field="*{model}" id="model" placeholder="Cooper" />
+                    <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></span><br />
+                </div>
+                <br/>
+
+                <div class="form-group">
+                    <label for="year">Year : </label>
+                    <input type="number" th:field="*{year}" id="year" placeholder="2009"/>
+                    <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></span><br />
+                </div>
+                <br/>
+
+                <div class="form-group">
+                    <label for="msrp">MSRP : $</label>
+                    <input type="number" th:field="*{msrp}" id="msrp" placeholder="22000" />
+                    <span th:if="${#fields.hasErrors('msrp')}" th:errors="*{msrp}"></span><br />
+                </div>
+                <br/>
+
+                <div class="form-group">
+                    <label for="category">Category : </label><br/>
+                    <select id="category" name="category">
+                        <th:block th:each="cat : ${category}">
+                            <option th:value="${cat.id}" th:text="${cat.categoryName}"></option>
+                        </th:block>
+                    </select>
+                </div>
+
+                <label for="image">Image : </label>
+                <input type="file" name="file" id="image" />
+                <br/>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="base :: footer"></div>
+<div th:replace="base :: javascript"></div>
+</body>
+
+</html>

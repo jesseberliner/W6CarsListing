@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="base :: header">
+
+    </div>
+    <title></title>
+</head>
+<body>
+<div th:replace="base :: nav"></div>
+<div th:replace="base :: head"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-1">
+        <span th:each="cat : ${category}">
+            <a th:href="@{/seeByCat/{id}(id=${cat.id})}" type="button" class="btn btn-light btn-link" th:text="${cat.categoryName}"></a><br/>
+        </span>
+        </div>
+        <div class="col-11">
+        <span th:each="car : ${cars}">
+        <div class="card" style="width: 18rem;">
+            <img th:src="${car.image}" class="card-img-top" alt="No picture added">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${car.manufacturer} + ' ' + ${car.model}"></h5>
+                <p class="card-text" th:text="'Price: $' +${#numbers.formatDecimal(car.msrp,1,2)}"></p>
+                <a th:href="@{/detail/{id}(id=${car.id})}" class="btn btn-primary">See detail</a>
+            </div>
+        </div>
+        </span>
+        </div>
+    </div>
+</div>
+
+<div th:replace="base :: footer"></div>
+<div th:replace="base :: javascript"></div>
+</body>
+
+</html>

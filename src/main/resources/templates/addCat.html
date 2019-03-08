@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="base :: header"></div>
+    <title></title>
+</head>
+<body class="d-flex flex-column">
+<div th:replace="base :: nav"></div>
+<div class="container">
+    <div id="page-content">
+        <div class="row justify-content-md-center">
+            <form action="#" th:action="@{/addCat}" th:object="${category}" method="post" >
+                <input type="hidden" th:field="*{id}"/>
+                <h2>All fields are required</h2>
+                <div class="form-group">
+                    <label for="categoryName">Category Name : </label>
+                    <input type="text" th:field="*{categoryName}" id="categoryName" placeholder="Compact" />
+                    <span th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"></span><br />
+                </div>
+                <br/>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="base :: footer"></div>
+<div th:replace="base :: javascript"></div>
+</body>
+
+</html>
