@@ -16,4 +16,8 @@ div.jumbotron {
     background: #C8E0F2 url("../images/cars.jpeg") repeat right top;
     padding-top: 10%;
 }
+.colorwhite {
+    color: white;
+    font-size: 36pt;
+}
 
