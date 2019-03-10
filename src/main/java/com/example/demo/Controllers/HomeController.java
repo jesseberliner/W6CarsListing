@@ -33,6 +33,7 @@ public class HomeController {
     @RequestMapping("/")
     public String home(Model model)
     {
+        System.out.println("home");
         model.addAttribute("cars", carRepo.findAllByDeletedIsFalse());
         model.addAttribute("category", catRepo.findAll());
         return "index";
